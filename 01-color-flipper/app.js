@@ -27,7 +27,7 @@ let randomNumber = (colors) => {
     //get total numbers of colours available
     let colorLen = colors.length;
     //generate a random number between 0 and length of colors array
-    let randomNum = Math.floor(Math.random() * colorLen);
+    return randomNum = Math.floor(Math.random() * colorLen);
 }
 
 
