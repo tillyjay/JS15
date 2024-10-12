@@ -178,6 +178,10 @@ nav {
 .nav-links {
   display: flex;
 }
+ul {
+  display:flex;
+  justify-content: center;
+}
 nav a {
   text-transform: capitalize;
   font-weight: 700;
