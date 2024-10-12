@@ -15,8 +15,10 @@ btn.addEventListener('click', () => {
     const hexMinusHash = randomHex(hex);
     //combine # and hexCode to create full random hex code
     const randomHexCode = hash + hexMinusHash;
+
     //set background colour of body to random colour
     document.body.style.backgroundColor = randomHexCode;
+
     //update text content of the 'color' span with chosen color
     color.textContent = randomHexCode;
 });
