@@ -11,10 +11,10 @@ btns.forEach((btn) => {
 
         //change span value by applying count depending on btn class
         if (btn.classList.contains('decrease')) {
-            count -= 1;
+            count--;
             value.textContent = count;
         } else if (btn.classList.contains('increase')) {
-            count += 1;
+            count++;
             value.textContent = count;
         } else if (btn.classList.contains('reset')) {
             count = 0;
@@ -22,16 +22,14 @@ btns.forEach((btn) => {
         }
 
         //change span value colour depending on above, below, or 0
-        if(count >= 1) {
+        if(count > 0) {
             value.style.color = 'green';
-        } else if (count <= -1) {
+        } else if (count < 0) {
             value.style.color = 'red';
         } else {
             value.style.color = 'black';
-        }
-        
+        }       
     });
-
 });
 
 
