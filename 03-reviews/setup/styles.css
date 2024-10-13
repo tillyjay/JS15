@@ -241,6 +241,7 @@ main {
 #info {
   margin-bottom: 0.75rem;
 }
+
 .prev-btn,
 .next-btn {
   color: var(--clr-primary-7);
