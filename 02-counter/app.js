@@ -32,6 +32,3 @@ btns.forEach((btn) => {
     });
 });
 
-
-
-
