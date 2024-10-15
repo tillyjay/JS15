@@ -6,13 +6,13 @@ const sidebar = document.querySelector('.sidebar');
 
 //add event listner to sidebar toggle button
 sidebarToggle.addEventListener('click', () => {
-    //toggle 'show-sidebar' class on links 
+    //toggle 'show-sidebar' class on sidebar 
     sidebar.classList.toggle('show-sidebar');
-    console.log(sidebar.classList);
+;
 });
 
 //add event listner to clost button 
 closeBtn.addEventListener('click', () => {
-    //remove 'show-sidebar' class on links
+    //remove 'show-sidebar' class on sidebar
     sidebar.classList.remove('show-sidebar');
 });
