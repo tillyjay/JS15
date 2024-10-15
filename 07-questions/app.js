@@ -1,5 +1,33 @@
+//Toggle questions in 3 different ways 
+
 //using selectors inside element
-// const question = document.querySelector('.question');
+//select all elements with class question
+const questions = document.querySelectorAll('.question');
+
+//loop through each 'question' element in NodeList
+questions.forEach(question => {
+    //for each 'question', find button with class 'question-btn'
+    const btn = question.querySelector('.question-btn');
+    //add a 'click' event listener to the button
+    btn.addEventListener('click', () => {
+        //loop through all 'questions' again to handle other open questions
+        questions.forEach(item => {
+            //if item is not current question (one being clicked), remove 'show-text' class
+            if (item !== question) {
+                item.classList.remove('show-text');
+            }
+        });
+        //toggle 'show-text' class on current question
+        //either add or remove class for clicked question
+        question.classList.toggle('show-text');
+    });
+});
+
+
+
+//toggle and remove selectors
+//select all elements individually 
+const question = document.querySelector('.question');
 const plusBtn = document.querySelector('.plus-icon');
 const minusBtn = document.querySelector('.minus-icon');
 
@@ -12,6 +40,7 @@ plusBtn.addEventListener('click', () => {
 minusBtn.addEventListener('click', () => {
     question.classList.remove('show-text');
 });
+
 
 
 //traversing the dom
