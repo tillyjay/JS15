@@ -1,4 +1,4 @@
-//using selectors inside the element
+//using selectors inside element
 const question = document.querySelector('.question');
 const plusBtn = document.querySelector('.plus-icon');
 const minusBtn = document.querySelector('.minus-icon');
@@ -14,4 +14,14 @@ minusBtn.addEventListener('click', () => {
 });
 
 
-// traversing the dom
+//traversing the dom
+//select all elements with class 'question-btn'
+const btns = document.querySelectorAll('.question-btn');
+
+//loop through each element in 'btns' NodeList
+btns.forEach(btn => {
+    //for each button add click event listener
+    btn.addEventListener('click', (e) => {
+        console.log(e.currentTarget.parentElement.parentElement)
+    })
+}) 
