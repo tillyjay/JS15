@@ -1,5 +1,5 @@
 //using selectors inside element
-const question = document.querySelector('.question');
+// const question = document.querySelector('.question');
 const plusBtn = document.querySelector('.plus-icon');
 const minusBtn = document.querySelector('.minus-icon');
 
@@ -22,6 +22,11 @@ const btns = document.querySelectorAll('.question-btn');
 btns.forEach(btn => {
     //for each button add click event listener
     btn.addEventListener('click', (e) => {
-        console.log(e.currentTarget.parentElement.parentElement)
-    })
-}) 
+        //find grandparent element of clicked button
+        //'e.currentTarget' refers to clicked button
+        //'parentElement.parentElement' moves up two levels to grandparent element 
+        const question = e.currentTarget.parentElement.parentElement
+        //toggle 'show-text' class on grandparent element (question) to show or hide text
+        question.classList.toggle('show-text');
+    });
+});
