@@ -1,6 +1,3 @@
-//get only unique categories 
-//iterate over categories return buttons
-//make sure to select buttons when available
 
 //items
 const menu = [
@@ -114,56 +111,60 @@ const displayMenuItems = (menuItems) => {
     sectionCenter.innerHTML = displayMenu;
 }
 
+//display menu buttons 
+const displayMenuButtons = () => {
+    //reduce menu array to get unique categories, starting with 'all' as default category
+    const categories = menu.reduce((values, item) => {
+      //check if current category ia already in values array
+      if(!values.includes(item.category)) {
+        //if not, add category to values array
+        values.push(item.category);
+      }
+      return values;
+    }, ['all']);
+    //iterate over array, for each item in array generate HTML strcture representing an button for category item
+    const categoryBtns = categories.map((category) => {
+      return `<button class="filter-btn" type="button" data-id=${category}>${category}</button>`
+    }).join('');
+  
+    //insert single HTML block into 'btn-container', displays buttons dynamically
+    container.innerHTML = categoryBtns;
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    
+  //filter items
+  //loop through each button and attach event listner to each one
+  filterBtns.forEach(btn => {
+    //listen for click event on each button,'e' is event object that contains info about event ('click' event in this case)
+    btn.addEventListener('click', (e) => {
+      //'e.currentTarget' refers to element event listner is attached to (clicked button)
+      //'dataset.id' accesses 'data-id' attribute of button, 'data-id' stores category ID for filtering
+      const category = e.currentTarget.dataset.id;
+      //filter menu array based on category of clicked button
+      const menuCategory = menu.filter((menuItem) => {
+        //if category of menuItem matches selected category, return menuItem
+        if (menuItem.category === category) {
+          return menuItem;
+        }
+      });
+      // category is 'all', display all items
+      if (category === 'all') {
+        displayMenuItems(menu);
+      } else {
+        //else display filtered item based on selected category
+        displayMenuItems(menuCategory);
+      }
+  
+     });
+  });
+}
+
 
 //load items - add event listener to window object, runs code only after HTML doc has been loaded but not everything else like stylesheets 
 window.addEventListener('DOMContentLoaded', () => {
-  //call function with menu arrary as argument
+  //call function with menu arrary as argument to display menu items
   displayMenuItems(menu);
 
-  //reduce menu array to get unique categories, starting with 'all' as default category
-  const categories = menu.reduce((values, item) => {
-    //check if current category ia already in values array
-    if(!values.includes(item.category)) {
-      //if not, add category to values array
-      values.push(item.category);
-    }
-    return values;
-  }, ['all']);
-
-  const categoryBtns = categories.map((category) => {
-    return `<button class="filter-btn" type="button" data-id=${category}>${category}</button>`
-  }).join('');
-
-  //insert single HTML block into 'btn-container', displays buttons dynamically
-  container.innerHTML = categoryBtns;
-  const filterBtns = document.querySelectorAll('.filter-btn');
-
-
-//filter items
-//loop through each button and attach event listner to each one
-filterBtns.forEach(btn => {
-  //listen for click event on each button,'e' is event object that contains info about event ('click' event in this case)
-  btn.addEventListener('click', (e) => {
-    //'e.currentTarget' refers to element event listner is attached to (clicked button)
-    //'dataset.id' accesses 'data-id' attribute of button, 'data-id' stores category ID for filtering
-    const category = e.currentTarget.dataset.id;
-    //filter menu array based on category of clicked button
-    const menuCategory = menu.filter((menuItem) => {
-      //if category of menuItem matches selected category, return menuItem
-      if (menuItem.category === category) {
-        return menuItem;
-      }
-    });
-    // category is 'all', display all items
-    if (category === 'all') {
-      displayMenuItems(menu);
-    } else {
-      //else display filtered item based on selected category
-      displayMenuItems(menuCategory);
-    }
-
-   });
-});
-
+  //call function to display menu buttons
+  displayMenuButtons();
 });
 
