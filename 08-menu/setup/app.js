@@ -74,14 +74,41 @@ const menu = [
   },
 ];
 
-//select HTML with class section center that holds menu items
-const sectionCenter = document.querySelector('.section-center');
 
-//add event listener to window object, runs code only after HTML doc has been loaded but not everything else like stylesheets 
+//select HTML elements
+const sectionCenter = document.querySelector('.section-center');
+const filterBtns = document.querySelectorAll('.filter-btn');
+
+
+//load items - add event listener to window object, runs code only after HTML doc has been loaded but not everything else like stylesheets 
 window.addEventListener('DOMContentLoaded', () => {
   //call function with menu arrary as argument
   displayMenuItems(menu);
 });
+
+
+//filter items
+//loop through each button and attach event listner to each one
+filterBtns.forEach(btn => {
+  //listen for click event on each button,'e' is event object that contains info about event ('click' event in this case)
+  btn.addEventListener('click', (e) => {
+    //'e.currentTarget' refers to element event listner is attached to (clicked button)
+    //'dataset.id' accesses 'data-id' attribute of button, 'data-id' stores category ID for filtering
+    const category = e.currentTarget.dataset.id;
+    //check category and filter menu accordingly
+    if (category === 'breakfast') {
+        displayMenuItems(menu.filter((menuItem) => menuItem.category === 'breakfast'));
+    } else if (category === 'lunch') {
+      displayMenuItems(menu.filter((menuItem) => menuItem.category === 'lunch'));
+    } else if (category === 'shakes') {
+      displayMenuItems(menu.filter((menuItem) => menuItem.category === 'shakes'));
+    } else {
+      //if no category matches, display all menu items
+      displayMenuItems(menu);
+    }
+  });
+});
+
 
 //display menu items function with menuItems param
 const displayMenuItems = (menuItems) => {
