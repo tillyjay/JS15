@@ -95,18 +95,22 @@ filterBtns.forEach(btn => {
     //'e.currentTarget' refers to element event listner is attached to (clicked button)
     //'dataset.id' accesses 'data-id' attribute of button, 'data-id' stores category ID for filtering
     const category = e.currentTarget.dataset.id;
-    //check category and filter menu accordingly
-    if (category === 'breakfast') {
-        displayMenuItems(menu.filter((menuItem) => menuItem.category === 'breakfast'));
-    } else if (category === 'lunch') {
-      displayMenuItems(menu.filter((menuItem) => menuItem.category === 'lunch'));
-    } else if (category === 'shakes') {
-      displayMenuItems(menu.filter((menuItem) => menuItem.category === 'shakes'));
-    } else {
-      //if no category matches, display all menu items
+    //filter menu array based on category of clicked button
+    const menuCategory = menu.filter((menuItem) => {
+      //if category of menuItem matches selected category, return menuItem
+      if (menuItem.category === category) {
+        return menuItem;
+      }
+    });
+    // category is 'all', display all items
+    if (category === 'all') {
       displayMenuItems(menu);
+    } else {
+      //else display filtered item based on selected category
+      displayMenuItems(menuCategory);
     }
-  });
+
+   });
 });
 
 
