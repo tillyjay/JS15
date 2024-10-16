@@ -79,11 +79,11 @@ const sectionCenter = document.querySelector('.section-center');
 
 //add event listener to window object, runs code only after HTML doc has been loaded but not everything else like stylesheets 
 window.addEventListener('DOMContentLoaded', () => {
-  //call function with menu arrary as param
+  //call function with menu arrary as argument
   displayMenuItems(menu);
 });
 
-//display menu items function
+//display menu items function with menuItems param
 const displayMenuItems = (menuItems) => {
     //iterate over array, for each item in array generate HTML strcture representing an article for menu item
     let displayMenu = menuItems.map((item) => {
