@@ -77,14 +77,6 @@ const menu = [
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
   {
-    id: 9,
-    title: "quarantine buddy",
-    category: "shakes",
-    price: 16.99,
-    img: "./images/item-9.jpeg",
-    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
-  },
-  {
     id: 10,
     title: "steak dinner",
     category: "dinner",
@@ -104,6 +96,18 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 window.addEventListener('DOMContentLoaded', () => {
   //call function with menu arrary as argument
   displayMenuItems(menu);
+
+  //reduce menu array to get unique categories, starting with 'all' as default category
+  const categories = menu.reduce((values, item) => {
+    //check if current category ia already in values array
+    if(!values.includes(item.category)) {
+      //if not, add category to values array
+      values.push(item.category);
+    }
+    return values;
+  }, ['all']);
+
+  console.log(categories);
 });
 
 
