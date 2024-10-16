@@ -1,3 +1,4 @@
+//items
 const menu = [
   {
     id: 1,
@@ -72,3 +73,28 @@ const menu = [
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
+
+//select HTML with class section center that holds menu items
+const sectionCenter = document.querySelector('.section-center');
+
+//add event listener to window object, runs code only after HTML doc has been loaded but not everything else like stylesheets 
+window.addEventListener('DOMContentLoaded', () => {
+  //iterate over 'menu' array, for each item in array generate HTML strcture representing an article for menu item
+  let displayMenu = menu.map((item) => {
+  //return template literal creating article element for each menu item, dynamically inserts data  
+  return `<article class="menu-item">
+            <img src="${item.img}" class="photo" alt="${item.title}" />
+            <div class="item-info">
+              <header>
+                <h4>${item.title}</h4>
+                <h4 class="price">${item.price}</h4>
+              </header>
+                <p class="item-text">${item.desc}</p>
+            </div>
+          </article>`;
+  });
+  //join HTML strings into single string, .join('') is used to remove comas between array elements
+  displayMenu = displayMenu.join('');
+  //insert single HTML block into 'section-center', displays menu items dynamically
+  sectionCenter.innerHTML = displayMenu;
+});
