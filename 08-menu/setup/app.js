@@ -89,7 +89,30 @@ const menu = [
 
 //select HTML elements
 const sectionCenter = document.querySelector('.section-center');
-const filterBtns = document.querySelectorAll('.filter-btn');
+const container = document.querySelector('.btn-container');
+
+
+//display menu items function with menuItems param
+const displayMenuItems = (menuItems) => {
+  //iterate over array, for each item in array generate HTML strcture representing an article for menu item
+  let displayMenu = menuItems.map((item) => {
+    //return template literal creating article element for each menu item, dynamically inserts data  
+    return `<article class="menu-item">
+              <img src="${item.img}" class="photo" alt="${item.title}" />
+              <div class="item-info">
+                <header>
+                  <h4>${item.title}</h4>
+                  <h4 class="price">${item.price}</h4>
+                </header>
+                  <p class="item-text">${item.desc}</p>
+              </div>
+            </article>`;
+       //join HTML strings into single string, .join('') is used to remove comas between array elements
+    }).join('');
+
+    //insert single HTML block into 'section-center', displays menu items dynamically
+    sectionCenter.innerHTML = displayMenu;
+}
 
 
 //load items - add event listener to window object, runs code only after HTML doc has been loaded but not everything else like stylesheets 
@@ -107,8 +130,13 @@ window.addEventListener('DOMContentLoaded', () => {
     return values;
   }, ['all']);
 
-  console.log(categories);
-});
+  const categoryBtns = categories.map((category) => {
+    return `<button class="filter-btn" type="button" data-id=${category}>${category}</button>`
+  }).join('');
+
+  //insert single HTML block into 'btn-container', displays buttons dynamically
+  container.innerHTML = categoryBtns;
+  const filterBtns = document.querySelectorAll('.filter-btn');
 
 
 //filter items
@@ -137,25 +165,5 @@ filterBtns.forEach(btn => {
    });
 });
 
+});
 
-//display menu items function with menuItems param
-const displayMenuItems = (menuItems) => {
-    //iterate over array, for each item in array generate HTML strcture representing an article for menu item
-    let displayMenu = menuItems.map((item) => {
-      //return template literal creating article element for each menu item, dynamically inserts data  
-      return `<article class="menu-item">
-                <img src="${item.img}" class="photo" alt="${item.title}" />
-                <div class="item-info">
-                  <header>
-                    <h4>${item.title}</h4>
-                    <h4 class="price">${item.price}</h4>
-                  </header>
-                    <p class="item-text">${item.desc}</p>
-                </div>
-              </article>`;
-      });
-      //join HTML strings into single string, .join('') is used to remove comas between array elements
-      displayMenu = displayMenu.join('');
-      //insert single HTML block into 'section-center', displays menu items dynamically
-      sectionCenter.innerHTML = displayMenu;
-}
