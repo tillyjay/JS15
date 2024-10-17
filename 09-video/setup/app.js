@@ -1,3 +1,18 @@
-// MDN
-// The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
-// The load event is fired when the whole page has loaded, including all dependent resources such as stylesheets and images.
+
+//select elements 
+const video = document.querySelector('.video-container');
+const btn = document.querySelector('.switch-btn');
+
+//add event listener for button 'click'
+btn.addEventListener('click', () => {
+    //check if btn already has 'slide' class
+    if (btn.classList.contains('slide')) {
+        //if it does, remove 'slide' and pause video
+        btn.classList.remove('slide');
+        video.pause();
+    } else {
+        //otherwise, toffle 'slide' and play video
+        btn.classList.toggle('slide');
+        video.play();
+    }
+});
