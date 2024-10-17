@@ -2,11 +2,13 @@
 //select elements 
 const video = document.querySelector('.video-container');
 const btn = document.querySelector('.switch-btn');
+const preloader = document.querySelector('.preloader')
 
-  //load video
-  window.addEventListener("DOMContentLoaded", () => {
-    video.preload;
-  });
+
+//when page fully loads hide preloader 
+window.addEventListener('load', () => {
+    preloader.classList.add('hide-preloader');
+});
   
 
 //add event listener for button 'click'
@@ -18,7 +20,7 @@ btn.addEventListener('click', () => {
         video.pause();
     } else {
         //otherwise, toffle 'slide' and play video
-        btn.classList.toggle('slide');
+        btn.classList.add('slide');
         video.play();
         //vid attributes
         video.loop = true;
@@ -26,3 +28,4 @@ btn.addEventListener('click', () => {
         video.controls = true;
     }
 });
+
