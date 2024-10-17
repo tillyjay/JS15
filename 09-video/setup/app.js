@@ -19,7 +19,7 @@ btn.addEventListener('click', () => {
         btn.classList.remove('slide');
         video.pause();
     } else {
-        //otherwise, toffle 'slide' and play video
+        //otherwise, add 'slide' and play video
         btn.classList.add('slide');
         video.play();
         //vid attributes
