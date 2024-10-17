@@ -3,6 +3,12 @@
 const video = document.querySelector('.video-container');
 const btn = document.querySelector('.switch-btn');
 
+  //load video
+  window.addEventListener("DOMContentLoaded", () => {
+    video.preload;
+  });
+  
+
 //add event listener for button 'click'
 btn.addEventListener('click', () => {
     //check if btn already has 'slide' class
@@ -14,5 +20,9 @@ btn.addEventListener('click', () => {
         //otherwise, toffle 'slide' and play video
         btn.classList.toggle('slide');
         video.play();
+        //vid attributes
+        video.loop = true;
+        video.muted = true;
+        video.controls = true;
     }
 });
