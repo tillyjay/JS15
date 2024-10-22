@@ -80,8 +80,13 @@ scrollLinks.forEach((link) => {
         let position = element.offsetTop - navHeight;
 
         //adjust position if navbar not fixed
-        if(!fixedNav){
+        if (!fixedNav){
             position = position - navHeight;
+        }
+
+        //if navbar height greater than 82px add container height for mobile vs
+        if (navHeight > 82) {
+            position = position + containerHeight;
         }
 
         //scroll to calculated position
