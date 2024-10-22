@@ -68,6 +68,14 @@ scrollLinks.forEach((link) => {
         e.preventDefault();
 
         //navigate to specific spot 
-        const id = e.currentTarget.getAttribute('href').slice(1);        
+        const id = e.currentTarget.getAttribute('href').slice(1);  
+        const element = document.getElementById(id);
+        //get vertical position of el relative to top of document
+        let position = element.offsetTop;
+        
+        window.scrollTo({
+            left:0,
+            top: position,
+        });
     });
 });
