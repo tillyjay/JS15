@@ -67,15 +67,29 @@ scrollLinks.forEach((link) => {
         //prevent default scroll
         e.preventDefault();
 
-        //navigate to specific spot 
+        //navigate to specific spot by href but remove #
         const id = e.currentTarget.getAttribute('href').slice(1);  
         const element = document.getElementById(id);
-        //get vertical position of el relative to top of document
-        let position = element.offsetTop;
+
+        //calculate heights needed for scrolling
+        const navHeight = navbar.getBoundingClientRect().height;
+        const containerHeight = linksContainer.getBoundingClientRect().height;
+        const fixedNav = navbar.classList.contains('fixed-nav');
         
+        //determine position of target element minus navbar height
+        let position = element.offsetTop - navHeight;
+
+        //adjust position if navbar not fixed
+        if(!fixedNav){
+            position = position - navHeight;
+        }
+
+        //scroll to calculated position
         window.scrollTo({
             left:0,
             top: position,
         });
+        //close mobile nav on scroll
+        linksContainer.style.height = 0;
     });
 });
