@@ -40,20 +40,34 @@ window.addEventListener('scroll', () => {
     const scrollHeight = window.scrollY;
     const navHeight = navbar.getBoundingClientRect().height;
 
-    //if scroll height is greater than navbar height, add 'fixed-nav' class
+    //if scroll height is greater than navbar height, add class
     if(scrollHeight > navHeight) {
         navbar.classList.add('fixed-nav');
     } else {
-         //otherwise, remove 'fixed-nav' class
+         //otherwise remove class
         navbar.classList.remove('fixed-nav');
     }
 
+    //if scroll height is greater than 500px add class to show back to top button
     if(scrollHeight > 500) {
         topLink.classList.add('show-link');
     } else {
+        //otherwise remove class
         topLink.classList.remove('show-link');
     }
 });
 
 // ********** smooth scroll ************
-// select links
+//select links
+const scrollLinks = document.querySelectorAll('.scroll-link');
+
+//loop through each link and add a click event listener
+scrollLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+        //prevent default scroll
+        e.preventDefault();
+
+        //navigate to specific spot 
+        const id = e.currentTarget.getAttribute('href').slice(1);        
+    });
+});
