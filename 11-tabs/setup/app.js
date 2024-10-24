@@ -29,6 +29,7 @@ about.addEventListener('click', (e) => {
                 article.classList.add('active');
             }
         });
+
     } 
 
 });
