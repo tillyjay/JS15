@@ -21,3 +21,6 @@ const weekdays = [
   "Friday",
   "Saturday",
 ];
+
+
+//select elements
