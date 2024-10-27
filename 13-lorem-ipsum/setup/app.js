@@ -30,7 +30,7 @@ form.addEventListener('submit', (e) => {
   const random = Math.floor(Math.random() * text.length);
 
   //empty value, -1, or > 9 return 1 random paragraph 
-  if (isNaN(value) || value < 0 || value > 9) {
+  if (isNaN(value) || value <= 0 || value > 9) {
     result.innerHTML = `<p class="result">${text[random]}</p>`;
   } else {
     //use specified number of paragraphs from start of array
