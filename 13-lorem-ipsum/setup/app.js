@@ -13,4 +13,34 @@ const text = [
 ];
 
 
+//select elements 
+const form = document.querySelector('.lorem-form');
+const amount = document.getElementById('amount');
+const result = document.querySelector('.lorem-text');
 
+
+//listen for submit event
+form.addEventListener('submit', (e) => {
+  //prevent default behaviour
+  e.preventDefault();
+
+  //get amount entered by user
+  const value = parseInt(amount.value);
+  //generate random index for default paragraph
+  const random = Math.floor(Math.random() * text.length);
+
+  //empty value, -1, or > 9 return 1 random paragraph 
+  if (isNaN(value) || value < 0 || value > 9) {
+    result.innerHTML = `<p class="result">${text[random]}</p>`;
+  } else {
+    //use specified number of paragraphs from start of array
+    let tempText = text.slice(0, value);
+    tempText = tempText.map((item) => {
+      return `<p class="result">${item}</p>`;
+    }).join("");
+
+    //inset the generated paragraphs into result container
+    result.innerHTML = tempText;
+  }
+
+});
