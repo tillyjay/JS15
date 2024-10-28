@@ -50,6 +50,9 @@ const addItem = (e) => {
 
         //display alert 
         displayAlert('item added to list', 'success');
+
+        //show container 
+        container.classList.add('show-container');
  
     } else if (value && editFlag) {
         
@@ -71,7 +74,7 @@ const displayAlert = (text, action) => {
     setTimeout(() => {
         alert.textContent = '';
         alert.classList.remove(`alert-${action}`);
-    }, 3000);
+    }, 2000);
 };
 
 
