@@ -83,14 +83,44 @@ const displayAlert = (text, action) => {
     }, 2000);
 };
 
+//clear items 
+const clearItems = () => {
+    const items = document.querySelectorAll('.grocery-item');
+
+    //loop through grocery list and remove each item
+    if(items.length > 0) {
+        items.forEach((item) => {
+            list.removeChild(item);
+        });
+    }
+    //remove class and hide container
+    container.classList.remove('show-container');
+
+    //display alert
+    displayAlert('empty list', 'danger');
+
+    //set back
+    setBackToDefault();
+
+    //remove from local storage
+    //localStorage.removeItem('list');
+};
+
 //set back to default 
 const setBackToDefault = () => {
-    console.log('set back to default');
+    //set input back to empty string
+    grocery.value = '';
+    editFlag = false;
+    editID = '';
+    submitBtn.textContent = 'submit';   
 };
 
 // ****** EVENT LISTENERS **********
 //submit form 
 form.addEventListener('submit', addItem);
+
+//clear items
+clearBtn.addEventListener('click', clearItems);
 
 
 // ****** LOCAL STORAGE **********
