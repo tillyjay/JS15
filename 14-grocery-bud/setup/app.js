@@ -70,8 +70,14 @@ const addItem = (e) => {
         setBackToDefault();
  
     } else if (value && editFlag) {
-        
-        console.log('editing');
+        //update innerHTML of editElement with new value
+        editElement.innerHTML = value;
+
+    
+
+        //set back to default
+        setBackToDefault();
+      
     } else {
 
         displayAlert('please enter value', 'danger');
@@ -123,6 +129,9 @@ const clearItems = () => {
 const deleteItem = (e) => {
     //target article w class 'grocery-item'
     const element = e.currentTarget.parentElement.parentElement;
+    //target 'grocery-item' id
+    const id = element.dataset.id;
+
     //remove ele from parent list 
     list.removeChild(element);
 
@@ -144,8 +153,27 @@ const deleteItem = (e) => {
 
 
 //edit item
-const editItem = () => {
-    console.log('edit item');
+const editItem = (e) => {
+    //target article w class 'grocery-item'
+    const element = e.currentTarget.parentElement.parentElement;
+
+    //set edit item 
+    editElement = e.currentTarget.parentElement.previousElementSibling;
+
+    //set form value
+    grocery.value = editElement.innerHTML;
+
+    //set edit flag
+    editFlag = true;
+
+    //target 'grocery-item' id
+    const id = element.dataset.id;
+
+    //set edit ID
+    editID = id;
+
+    submitBtn.textContent = 'Edit';
+
 };
 
 
@@ -174,5 +202,10 @@ clearBtn.addEventListener('click', clearItems);
 const addToLocalStorage = (id, value) => {
     console.log('added to local storage');
 };
+
+const removeFromLocalStorage = (id) => {
+
+};
+
 
 // ****** SETUP ITEMS **********
