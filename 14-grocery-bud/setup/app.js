@@ -73,13 +73,17 @@ const addItem = (e) => {
         //update innerHTML of editElement with new value
         editElement.innerHTML = value;
 
-    
+        //display alert 
+        displayAlert('value changed', 'success');
+
+        //edit local storage
+        editLocalStorage(editID, value);
 
         //set back to default
         setBackToDefault();
       
     } else {
-
+        //display alert 
         displayAlert('please enter value', 'danger');
     }
 };
@@ -156,30 +160,21 @@ const deleteItem = (e) => {
 const editItem = (e) => {
     //target article w class 'grocery-item'
     const element = e.currentTarget.parentElement.parentElement;
-
     //set edit item 
     editElement = e.currentTarget.parentElement.previousElementSibling;
-
     //set form value
     grocery.value = editElement.innerHTML;
-
     //set edit flag
     editFlag = true;
-
-    //target 'grocery-item' id
-    const id = element.dataset.id;
-
     //set edit ID
-    editID = id;
-
+    editID = element.dataset.id;
+    //update form button to edit 
     submitBtn.textContent = 'Edit';
-
 };
 
 
 //set back to default 
 const setBackToDefault = () => {
-    //set input back to empty string
     grocery.value = '';
     editFlag = false;
     editID = '';
@@ -204,6 +199,10 @@ const addToLocalStorage = (id, value) => {
 };
 
 const removeFromLocalStorage = (id) => {
+
+};
+
+const editLocalStorage = (id, value) => {
 
 };
 
