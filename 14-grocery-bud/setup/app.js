@@ -53,6 +53,12 @@ const addItem = (e) => {
 
         //show container 
         container.classList.add('show-container');
+
+        //add to local storage
+        addToLocalStorage(id, value);
+
+        //set back to default
+        setBackToDefault();
  
     } else if (value && editFlag) {
         
@@ -77,6 +83,10 @@ const displayAlert = (text, action) => {
     }, 2000);
 };
 
+//set back to default 
+const setBackToDefault = () => {
+    console.log('set back to default');
+};
 
 // ****** EVENT LISTENERS **********
 //submit form 
@@ -84,5 +94,9 @@ form.addEventListener('submit', addItem);
 
 
 // ****** LOCAL STORAGE **********
+
+const addToLocalStorage = (id, value) => {
+    console.log('added to local storage');
+};
 
 // ****** SETUP ITEMS **********
