@@ -44,7 +44,16 @@ const addItem = (e) => {
                                 <button type="button" class="delete-btn">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                            </div>`
+                            </div>`                  
+
+        //select edit/delete btns that were added dynamically                    
+        const deleteBtn = element.querySelector('.delete-btn');
+        const editBtn = element.querySelector('.edit-btn');
+
+        //add event listeners where there is access to btns
+        deleteBtn.addEventListener('click', deleteItem);
+        editBtn.addEventListener('click', editItem);
+
         //append new grocery item ele to list 
         list.appendChild(element);
 
@@ -69,6 +78,7 @@ const addItem = (e) => {
     }
 };
 
+
 //display alert 
 const displayAlert = (text, action) => {
     
@@ -83,10 +93,12 @@ const displayAlert = (text, action) => {
     }, 2000);
 };
 
+
 //clear items 
 const clearItems = () => {
     const items = document.querySelectorAll('.grocery-item');
 
+    //if there is more than 1 item 
     //loop through grocery list and remove each item
     if(items.length > 0) {
         items.forEach((item) => {
@@ -106,6 +118,37 @@ const clearItems = () => {
     //localStorage.removeItem('list');
 };
 
+
+//delete item
+const deleteItem = (e) => {
+    //target article w class 'grocery-item'
+    const element = e.currentTarget.parentElement.parentElement;
+    //remove ele from parent list 
+    list.removeChild(element);
+
+    //if there are no items
+    if(list.children.length === 0) {
+        //remove class and hide container
+        container.classList.remove('show-container');
+    }
+
+    //display alert
+    displayAlert('item removed', 'danger');
+
+    //set back
+    setBackToDefault();
+
+    //remove from local storage
+    //removeFromLocalStorage(id);
+};
+
+
+//edit item
+const editItem = () => {
+    console.log('edit item');
+};
+
+
 //set back to default 
 const setBackToDefault = () => {
     //set input back to empty string
@@ -115,12 +158,15 @@ const setBackToDefault = () => {
     submitBtn.textContent = 'submit';   
 };
 
+
 // ****** EVENT LISTENERS **********
 //submit form 
 form.addEventListener('submit', addItem);
 
 //clear items
 clearBtn.addEventListener('click', clearItems);
+
+//
 
 
 // ****** LOCAL STORAGE **********
