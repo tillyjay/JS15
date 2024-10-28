@@ -15,14 +15,42 @@ let editID = '';
 
 // ****** FUNCTIONS **********
 const addItem = (e) => {
+    //prevent default submission behaviour
     e.preventDefault();
 
+    //get value from grocery input field
     const value = grocery.value;
+    //generate a unique ID baded on current timestamp
     const id = new Date ().getTime().toString();
 
+    //check if input value exists and not in edit mode
     if (value && !editFlag) {
+        //create a new article ele to rep grocery item
+        const element = document.createElement('article');
+        //add class 
+        element.classList.add('grocery-item');
+        //create custom attribute 'data-id' to store item's ID
+        const attr = document.createAttribute('data-id');
+        //set val to generated ID
+        attr.value = id;
+        //attach attribute to ele
+        element.setAttributeNode(attr);
+        //set HTML of ele with grocery item details
+        element.innerHTML = `<p class="title">${value}</p>
+                            <div class="btn-container">
+                                <button type="button" class="edit-btn">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" class="delete-btn">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>`
+        //append new grocery item ele to list 
+        list.appendChild(element);
 
-        console.log('add item to list');
+        //display alert 
+        displayAlert('item added to list', 'success');
+ 
     } else if (value && editFlag) {
         
         console.log('editing');
